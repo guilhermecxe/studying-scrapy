@@ -33,3 +33,6 @@ class QuotesSpider(scrapy.Spider):
 # Para mais detalhes sobre isso:
 # - https://stackoverflow.com/questions/52924300/what-is-the-difference-between-a-json-file-and-jl-file
 # - https://www.reddit.com/r/scrapy/comments/cd2h65/how_to_tell_scrapy_that_when_you_yield_to_write/
+
+# Para saber o que é `yield`: https://www.programiz.com/python-programming/generator
+# Mas eu aconselho saber o que são iterators primeiro: https://www.programiz.com/python-programming/iterator
