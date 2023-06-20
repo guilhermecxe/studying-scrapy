@@ -7,6 +7,10 @@ import scrapy
 
 
 class G1Item(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    url = scrapy.Field()
+    title = scrapy.Field()
+    subtitle = scrapy.Field()
+    publication_date = scrapy.Field()
+    last_update = scrapy.Field()
+    acquisition_date = scrapy.Field()
+    article = scrapy.Field()
