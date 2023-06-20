@@ -1,0 +1,1 @@
+Projeto simples em que usamos o parâmetro `meta` em `response.follow` para passarmos argumentos para o método de parse.

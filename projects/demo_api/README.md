@@ -1,0 +1,1 @@
+Nesse projeto estamos usando o `scrapy` para obter dados de uma API.

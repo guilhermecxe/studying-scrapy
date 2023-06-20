@@ -1,0 +1,1 @@
+Um pequeno projeto inicial bem comentado em que usamos `FEED_EXPORT_ENCODING` para expecificar o tipo de caractere que deve ser exportado e alteramos o User-Agent e as headers usados.
