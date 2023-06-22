@@ -5,6 +5,7 @@ from scrapy.spiders import CrawlSpider, Rule
 from urllib.parse import urlparse, parse_qs
 from datetime import datetime, timedelta
 import pytz
+import jsonlines
 
 from g1.items import G1Item
 from g1.itemsloaders import NewsLoader
@@ -21,6 +22,15 @@ class SearchSpider(scrapy.Spider):
     START_DATE = datetime(2022, 1, 1)
     END_DATE = datetime(2022, 1, 31)
     SAVE_ON = 'file.jl'
+
+    def __init__(self, name=None, **kwargs):
+        super().__init__(name, **kwargs)
+
+        # Obtendo as urls já salvas
+        self.urls_seen = []
+        with jsonlines.open(SearchSpider.SAVE_ON, 'r') as reader:
+            for line in reader:
+                self.urls_seen.append(line['url'])
 
     def start_requests(self):
         page = 1
@@ -41,7 +51,7 @@ class SearchSpider(scrapy.Spider):
             return
         for result in results:
             url = process_url(result.xpath('.//@href').get())
-            if '/go/' in url:
+            if ('/go/' in url) and (not url in self.urls_seen):
                 yield response.follow(url, callback=self.parse_news)
         
         next_page = response.request.meta['page'] + 1
@@ -59,5 +69,7 @@ class SearchSpider(scrapy.Spider):
         news_item.add_css('last_update', 'time[itemprop="dateModified"]::attr(datetime)')
         news_item.add_value('acquisition_date', datetime.now(pytz.timezone(REGION)).strftime('%d-%m-%Y'))
         news_item.add_css('article', 'article[itemprop="articleBody"] *::text')
+
+        self.urls_seen.append(response.url)
 
         yield news_item.load_item()

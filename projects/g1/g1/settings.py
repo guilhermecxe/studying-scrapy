@@ -63,8 +63,7 @@ DOWNLOAD_DELAY = 5
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'g1.pipelines.DuplicatesPipeline': 100,
-   'g1.pipelines.DatesToStrPipeline': 200,
+   'g1.pipelines.DatesToStrPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

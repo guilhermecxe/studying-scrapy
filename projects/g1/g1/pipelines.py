@@ -17,13 +17,3 @@ class DatesToStrPipeline:
         adapter['publication_date'] = datetime.strptime(adapter['publication_date'], r'%Y-%m-%dT%H:%M:%S.%fZ').strftime(r'%d-%m-%Y')
         adapter['last_update'] = datetime.strptime(adapter['last_update'], r'%Y-%m-%dT%H:%M:%S.%fZ').strftime(r'%d-%m-%Y')
         return item
-    
-class DuplicatesPipeline:
-    def __init__(self):
-        self.urls_seen = []
-        with jsonlines.open(SearchSpider.SAVE_ON, 'r') as reader:
-            for line in reader:
-                self.urls_seen.append(line['url'])
-
-    def process_item(self, item, spider):
-        pass
