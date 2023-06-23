@@ -19,8 +19,8 @@ class SearchSpider(scrapy.Spider):
 
     SEARCH_URL_TEMPLATE = "https://g1.globo.com/busca/?q={}&page={}&order=recent&species=not%C3%ADcias&from={}T00%3A00%3A00-0300&to={}T23%3A59%3A59-0300&ajax=1"
     Q = 'noroeste'
-    START_DATE = datetime(2022, 1, 1)
-    END_DATE = datetime(2022, 1, 31)
+    START_DATE = datetime(2022, 2, 1)
+    END_DATE = datetime(2022, 12, 31)
     SAVE_ON = 'file.jl'
 
     def __init__(self, name=None, **kwargs):
